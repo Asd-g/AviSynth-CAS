@@ -116,10 +116,12 @@ void CAS::filter_c(PVideoFrame& src, PVideoFrame& dst, const CAS* const __restri
 CAS::CAS(PClip _child, float sharpness, int y, int u, int v, int opt, IScriptEnvironment* env)
     : GenericVideoFilter(_child), sharpness_(sharpness), y_(y), u_(u), v_(v), opt_(opt)
 {
+    if (!vi.IsPlanar())
+        env->ThrowError("CAS: only planar formats are supported.");
     if (sharpness_ < 0.0f || sharpness_ > 1.0f)
-        env->ThrowError("CAS: sharpness must be between 0.0 and 1.0 (inclusive)");
+        env->ThrowError("CAS: sharpness must be between 0.0 and 1.0 (inclusive).");
     if (opt_ < -1 || opt_ > 3)
-        env->ThrowError("CAS: opt must be between -1..3");
+        env->ThrowError("CAS: opt must be between -1..3.");
     if (!(env->GetCPUFlags() & CPUF_AVX512F) && opt_ == 3)
         env->ThrowError("CAS: opt=3 requires AVX512F.");
     if (!(env->GetCPUFlags() & CPUF_AVX2) && opt_ == 2)
