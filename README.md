@@ -1,16 +1,22 @@
-# Description
+## Description
 
 [Contrast Adaptive Sharpening.](https://gpuopen.com/fidelityfx-cas/)
 
 This is [a port of the VapourSynth plugin CAS](https://github.com/HomeOfVapourSynthEvolution/VapourSynth-CAS).
 
-# Usage
+### Requirements:
+
+- AviSynth 2.60 / AviSynth+ 3.4 or later
+
+- Microsoft VisualC++ Redistributable Package 2022 (can be downloaded from [here](https://github.com/abbodi1406/vcredist/releases))
+
+### Usage:
 
 ```
 CAS (clip, float "sharpness", int "y", int "u", int "v", int "opt")
 ```
 
-## Parameters:
+### Parameters:
 
 - clip\
     A clip to process. All planar formats are supported.
